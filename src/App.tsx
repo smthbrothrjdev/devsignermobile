@@ -1,14 +1,25 @@
 import { useState } from 'react'
 import './App.css'
 import BadGrid from "./comps/BadGrid.tsx";
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+
 
 function App() {
   const [count, setCount] = useState(0)
 
+  const LightTheme = createTheme({
+    palette: {
+      mode: 'light',
+    },
+  });
+
   return (
-    <>
-      <h1>hello</h1>
-      <div className="card">
+<ThemeProvider theme={LightTheme}>
+  <>
+    <CssBaseline/>
+      <div style={{  textAlign:'center' }}>
+        <h1>MOBILE MAGIC</h1>
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
@@ -20,7 +31,8 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
       <BadGrid />
-    </>
+  </>
+</ThemeProvider>
   )
 }
 
