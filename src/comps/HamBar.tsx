@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { Drawer, List, ListItem, ListItemIcon, ListItemText, IconButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import AppsIcon from '@mui/icons-material/Apps';
+import SanitizerIcon from '@mui/icons-material/Sanitizer';
+import TipsAndUpdatesIcon from '@mui/icons-material/TipsAndUpdates';
+import AirlineSeatFlatAngledIcon from '@mui/icons-material/AirlineSeatFlatAngled';
 
 const HamBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,12 +23,25 @@ const HamBar = () => {
           onKeyDown={toggleDrawer(false)}
       >
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-          ))}
+
+            <ListItem button key={'App Manager'}>
+              <ListItemIcon><AppsIcon /></ListItemIcon>
+              <ListItemText primary={'App Manager'} />
+            </ListItem>
+        <ListItem button key={"Secret Suace Maker"}>
+              <ListItemIcon><SanitizerIcon/></ListItemIcon>
+              <ListItemText primary={"Secret Suace Maker"} />
+            </ListItem>
+        <ListItem button key={"Ideation Ideas"}>
+              <ListItemIcon><TipsAndUpdatesIcon /></ListItemIcon>
+              <ListItemText primary={"Ideation Ideas"} />
+            </ListItem>
+        <ListItem button key={"APPLICATION PURGATORY"}>
+              <ListItemIcon><AirlineSeatFlatAngledIcon /></ListItemIcon>
+              <ListItemText primary={"APPLICATION PURGATORY"} />
+            </ListItem>
+
+
         </List>
       </div>
   );

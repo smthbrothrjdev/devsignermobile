@@ -4,7 +4,7 @@ import BadGrid from "./comps/BadGrid.tsx";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import {Button, Stack} from "@mui/material";
 import Box from "@mui/material/Box";
-import Sidebar from "./comps/Sidebar.tsx";
+import HamBar from "./comps/HamBar.tsx";
 
 const LightTheme = createTheme({
   palette: {
@@ -19,9 +19,8 @@ function App() {
 return (
     <ThemeProvider theme={LightTheme}>
       <CssBaseline />
-      <Box sx={{ display: 'flex'}}>
-        <Sidebar />
         <Box component="main" sx={{ flexGrow: 1,  textAlign: 'center', pl: 10}}  >
+          <HamBar/>
           <h1>Application Team Manager</h1>
           <BadGrid />
           <Stack sx={{ p: 3 }} spacing={2} direction={"row"} justifyContent="flex-end">
@@ -30,7 +29,6 @@ return (
             <Button variant="contained" color="error">DELETE</Button>
           </Stack>
         </Box>
-      </Box>
     </ThemeProvider>
 );
 }
