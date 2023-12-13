@@ -1,13 +1,52 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React + TS</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bad Mobile Responsiveness Example</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    .container {
+      width: 1000px;
+      margin: 0 auto;
+    }
+
+    .column {
+      float: left;
+      width: 30%;
+      margin: 1%;
+      background-color: #f2f2f2;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    h2 {
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="column">
+    <h2>Column 1</h2>
+    <p>This is the content of column 1.</p>
+  </div>
+
+  <div class="column">
+    <h2>Column 2</h2>
+    <p>This is the content of column 2.</p>
+  </div>
+
+  <div class="column">
+    <h2>Column 3</h2>
+    <p>This is the content of column 3.</p>
+  </div>
+</div>
+
+</body>
 </html>
