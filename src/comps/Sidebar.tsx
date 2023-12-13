@@ -1,50 +1,54 @@
-import { useState } from 'react';
-import { Drawer, List, ListItem, ListItemIcon, ListItemText, IconButton } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import {Drawer, List, ListItem, ListItemText, ListItemButton, Box, Typography, Stack} from '@mui/material';
+
+const drawerWidth = 240;
 
 const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
-    if (event.type === 'keydown' && ((event as React.KeyboardEvent).key === 'Tab' || (event as React.KeyboardEvent).key === 'Shift')) {
-      return;
-    }
-    setIsOpen(open);
-  };
-
-  const list = () => (
-      <div
-          role="presentation"
-          onClick={toggleDrawer(false)}
-          onKeyDown={toggleDrawer(false)}
-      >
-        <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-          ))}
-        </List>
-      </div>
-  );
-
   return (
-      <div>
-        <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={toggleDrawer(true)}
+      <Box
+          sx={{
+            width: drawerWidth,
+            flexShrink: 0,
+            '& .MuiDrawer-paper': {
+              width: drawerWidth,
+              boxSizing: 'border-box',
+              p: 1,
+              backgroundColor: 'grey.200'
+            },
+          }}
+      >
+        <Drawer
+            variant="permanent"
+            anchor="left"
+            open
         >
-          <MenuIcon />
-        </IconButton>
-        <Drawer anchor='left' open={isOpen} onClose={toggleDrawer(false)}>
-          {list()}
+          <Typography variant='h5'> Product Office Training Information System (POTIS)</Typography>
+          <Stack sx={{p:6}}> </Stack>
+          <Typography variant='h6'> Applications </Typography>
+
+          <List >
+            <ListItem key="Application1" >
+              <ListItemButton>
+                <ListItemText primary="App Manager" />
+              </ListItemButton>
+            </ListItem>
+            <ListItem key="Application3" >
+              <ListItemButton>
+                <ListItemText primary="Secret Suace Maker" />
+              </ListItemButton>
+            </ListItem>
+            <ListItem key="Application3" >
+              <ListItemButton>
+                <ListItemText primary="Ideation Ideas" />
+              </ListItemButton>
+            </ListItem>
+            <ListItem key="Application4" >
+              <ListItemButton>
+                <ListItemText primary="APPLICATION PURGATORY" />
+              </ListItemButton>
+            </ListItem>
+          </List>
         </Drawer>
-      </div>
+      </Box>
   );
 };
 

@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box';
-import { DataGrid, GridColDef} from '@mui/x-data-grid';
+import {DataGrid, GridColDef} from '@mui/x-data-grid';
 
 const columns: GridColDef[] = [
 
@@ -8,12 +8,19 @@ const columns: GridColDef[] = [
     headerName: 'App Name',
     width: 300,
     editable: true,
-  },
+    renderHeader: () => (
+        <strong>
+          {'App Name '}
+        </strong> )},
   {
     field: 'users',
-    headerName: 'users',
+    headerName: 'Users',
     width: 150,
     editable: true,
+    renderHeader: () => (
+        <strong>
+          {'Users'}
+        </strong> )
   },
   {
     field: 'status',
@@ -21,6 +28,10 @@ const columns: GridColDef[] = [
     type: 'number',
     width: 150,
     editable: true,
+    renderHeader: () => (
+        <strong>
+          {'Status'}
+        </strong> )
   },
   {
     field: 'like',
@@ -28,6 +39,10 @@ const columns: GridColDef[] = [
     description: 'This column has a value getter and is not sortable.',
     sortable: false,
     width: 160,
+    renderHeader: () => (
+        <strong>
+          {'Do We Like Them?'}
+        </strong> )
   },
 
   {
@@ -35,6 +50,10 @@ const columns: GridColDef[] = [
     headerName: 'Is it a Cool App?',
     width: 150,
     editable: true,
+    renderHeader: () => (
+        <strong>
+          {'Is it a Cool App?'}
+        </strong> )
   },
 ];
 
@@ -52,7 +71,8 @@ const rows = [
 
 export default function BadGrid() {
   return (
-      <Box sx={{ height: 530, width: '100%' }}>
+      <Box sx={{ height: 400, width: '100%', backgroundColor: 'white',
+        }}>
         <DataGrid
             rows={rows}
             columns={columns}
