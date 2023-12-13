@@ -1,6 +1,8 @@
 import Box from '@mui/material/Box';
 import {DataGrid, GridColDef} from '@mui/x-data-grid';
 import {useEffect, useState} from "react";
+import {useMediaQuery} from "@mui/material";
+import DataRowCard from "./DataRowCard.tsx";
 
 function getColumns(width: number): GridColDef[] {
   if (width < 600) { // Mobile view
@@ -101,22 +103,25 @@ const rows = [
 ];
 
 export default function BadGrid() {
-  const [columns, setColumns] = useState<GridColDef[]>(getColumns(window.innerWidth));
+  const [columns] = useState<GridColDef[]>(getColumns(window.innerWidth));
+  const [isMobileView, setIsMobileView] = useState(window.innerWidth < 600);
+  const matches = useMediaQuery('(max-width:600px)');
+
   useEffect(() => {
-    const handleResize = () => {
-      setColumns(getColumns(window.innerWidth));
-    };
+    setIsMobileView(matches);
+  }, [matches]);
 
-    window.addEventListener('resize', handleResize);
+  const renderMobileView = () => (
+      <Box>
+        {rows.map(row => (
+            <DataRowCard key={row.id} row={row} />
+        ))}
+      </Box>
+  );
 
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
-  return (
-      <Box sx={{ backgroundColor: 'white'}}>
-        <DataGrid
+  const renderDesktopView = () => (
+      <Box sx={{backgroundColor: 'white', border: 1, boxShadow: 1 } }>
+      <DataGrid
             rows={rows}
             columns={columns}
             initialState={{
@@ -130,6 +135,10 @@ export default function BadGrid() {
             checkboxSelection
             disableRowSelectionOnClick
         />
-      </Box>
+</Box>
+  );
+
+  return (<>
+        {isMobileView ? renderMobileView() : renderDesktopView()}</>
   );
 }
