@@ -20,10 +20,13 @@ return (
     <ThemeProvider theme={LightTheme}>
       <CssBaseline />
         <Box component="main" sx={{ flexGrow: 1,  textAlign: 'center', pl: 10}}  >
-          <HamBar/>
           <h1>Application Team Manager</h1>
           <BadGrid />
-          <Stack sx={{ p: 3 }} spacing={2} direction={"row"} justifyContent="flex-end">
+          <Stack sx={{ p: 3 }} spacing={2} direction={"row"} >
+            <Box sx={{ flexGrow: 0, flexShrink: 0 }}>
+              <HamBar />
+            </Box>
+            <Box sx={{ flexGrow: 1, flexShrink: 1 }} />
             <Button variant="contained" color="secondary">PERSERVERE</Button>
             <Button variant="contained" color="success">PIVOT</Button>
             <Button variant="contained" color="error">DELETE</Button>
