@@ -1,61 +1,92 @@
 import Box from '@mui/material/Box';
 import {DataGrid, GridColDef} from '@mui/x-data-grid';
+import {useEffect, useState} from "react";
 
-const columns: GridColDef[] = [
+function getColumns(width: number): GridColDef[] {
+  if (width < 600) { // Mobile view
+    return [
+      {
+        field: 'id',
+        headerName: 'App Name',
+      },
+      {
+        field: 'users',
+        headerName: 'Users',
+        type: "number",
+        editable: true,
+        renderHeader: () => (
+            <strong>
+              {'Users'}
+            </strong> )
+      },
+      {
+        field: 'status',
+        headerName: 'Status',
+        editable: true,
+        renderHeader: () => (
+            <strong>
+              {'Status'}
+            </strong> )
+      },
+    ];
+  } else {
+    return [
+      {
+        field: 'id',
+        headerName: 'App Name',
+        width: 150,
+        editable: true,
+        renderHeader: () => (
+            <strong>
+              {'App Name '}
+            </strong> )},
+      {
+        field: 'users',
+        headerName: 'Users',
+        width: 150,
+        editable: true,
+        renderHeader: () => (
+            <strong>
+              {'Users'}
+            </strong> )
+      },
+      {
+        field: 'status',
+        headerName: 'Status',
+        width: 150,
+        editable: true,
+        renderHeader: () => (
+            <strong>
+              {'Status'}
+            </strong> )
+      },
+      {
+        field: 'like',
+        headerName: 'Do We Like Them?',
+        description: 'This column has a value getter and is not sortable.',
+        sortable: false,
+        width: 160,
+        renderHeader: () => (
+            <strong>
+              {'Do We Like Them?'}
+            </strong> )
+      },
 
-  {
-    field: 'id',
-    headerName: 'App Name',
-    width: 300,
-    editable: true,
-    renderHeader: () => (
-        <strong>
-          {'App Name '}
-        </strong> )},
-  {
-    field: 'users',
-    headerName: 'Users',
-    width: 150,
-    editable: true,
-    renderHeader: () => (
-        <strong>
-          {'Users'}
-        </strong> )
-  },
-  {
-    field: 'status',
-    headerName: 'Status',
-    type: 'number',
-    width: 150,
-    editable: true,
-    renderHeader: () => (
-        <strong>
-          {'Status'}
-        </strong> )
-  },
-  {
-    field: 'like',
-    headerName: 'Do We Like Them?',
-    description: 'This column has a value getter and is not sortable.',
-    sortable: false,
-    width: 160,
-    renderHeader: () => (
-        <strong>
-          {'Do We Like Them?'}
-        </strong> )
-  },
+      {
+        field: 'cool',
+        headerName: 'Is it a Cool App?',
+        width: 150,
+        editable: true,
+        renderHeader: () => (
+            <strong>
+              {'Is it a Cool App?'}
+            </strong> )
+      },
+    ];
+  }
+}
 
-  {
-    field: 'cool',
-    headerName: 'Is it a Cool App?',
-    width: 150,
-    editable: true,
-    renderHeader: () => (
-        <strong>
-          {'Is it a Cool App?'}
-        </strong> )
-  },
-];
+
 
 const rows = [
   { id:'Tesseract', users: '1', status: 'OK',like:'NO', cool: 'NO' },
@@ -70,20 +101,32 @@ const rows = [
 ];
 
 export default function BadGrid() {
+  const [columns, setColumns] = useState<GridColDef[]>(getColumns(window.innerWidth));
+  useEffect(() => {
+    const handleResize = () => {
+      setColumns(getColumns(window.innerWidth));
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
-      <Box sx={{ height: 400, width: '100%', backgroundColor: 'white',
-        }}>
+      <Box sx={{ backgroundColor: 'white'}}>
         <DataGrid
             rows={rows}
             columns={columns}
             initialState={{
               pagination: {
                 paginationModel: {
-                  pageSize: 50,
+                  pageSize: 5,
                 },
               },
             }}
-            pageSizeOptions={[50]}
+            pageSizeOptions={[5]}
             checkboxSelection
             disableRowSelectionOnClick
         />

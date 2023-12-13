@@ -20,7 +20,7 @@ return (
     <ThemeProvider theme={LightTheme}>
       <CssBaseline />
       <AppyBar />
-        <Box component="main" sx={{ flexGrow: 1,  textAlign: 'center', pl: 10}}  >
+        <Box component="main" sx={{ flexGrow: 1,  textAlign: 'center', px: 2} } >
           <h1>Application Team Manager</h1>
           <BadGrid />
           <Stack sx={{ p: 3 }} spacing={2} direction={"row"}  justifyContent={"center"}>
