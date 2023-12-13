@@ -1,12 +1,12 @@
-import { useState } from 'react'
+import CssBaseline from '@mui/material/CssBaseline';
 import './App.css'
 import BadGrid from "./comps/BadGrid.tsx";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
+import Sidebar from "./comps/Sidebar.tsx";
+import {Button, Stack} from "@mui/material";
 
 
 function App() {
-  const [count, setCount] = useState(0)
 
   const LightTheme = createTheme({
     palette: {
@@ -16,22 +16,21 @@ function App() {
 
   return (
 <ThemeProvider theme={LightTheme}>
-  <>
-    <CssBaseline/>
+
+    <CssBaseline />
+    <Sidebar />
       <div style={{  textAlign:'center' }}>
-        <h1>MOBILE MAGIC</h1>
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
+        <h1>Application Team Manager</h1>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
       <BadGrid />
-  </>
+  <Stack sx={{p:3}} spacing={2} direction={"row"} justifyContent="flex-end" >
+  <Button variant="contained" color="secondary"> PERSERVERE</Button>
+  <Button variant="contained" color="success"> PIVOT</Button>
+  <Button variant="contained" color={"error"}> DELETE </Button>
+  </Stack>
 </ThemeProvider>
   )
 }
