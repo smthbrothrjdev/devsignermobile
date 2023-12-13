@@ -40,23 +40,30 @@ const columns: GridColDef[] = [
 
 const rows = [
   { id:'Tesseract', users: '1', status: 'OK',like:'NO', cool: 'NO' },
+  { id:'PMCS', users: '120', status: 'OK',like:'NO', cool: 'YES' },
+  { id:'Fire Wire', users: 'ALL OF THEM', status: 'OK',like:'YES', cool: 'YES' },
+  { id:'Mercury', users: '4', status: 'OK',like:'YES', cool: 'YES' },
+  { id:'RecruitMe', users: '100', status: 'OK',like:'YES', cool: 'YES' },
+  { id:'MYSQUAD', users: '-2', status: 'Meh',like:'YES', cool: 'NO' },
+  { id:'Roll Out', users: '7', status: 'OK',like:'YES', cool: 'YES' },
+  { id:'ATIS', users: 'what are users', status: 'DEAD',like:'YES', cool: 'NO' },
 
 ];
 
 export default function BadGrid() {
   return (
-      <Box sx={{ height: 400, width: '100%' }}>
+      <Box sx={{ height: 530, width: '100%' }}>
         <DataGrid
             rows={rows}
             columns={columns}
             initialState={{
               pagination: {
                 paginationModel: {
-                  pageSize: 5,
+                  pageSize: 50,
                 },
               },
             }}
-            pageSizeOptions={[5]}
+            pageSizeOptions={[50]}
             checkboxSelection
             disableRowSelectionOnClick
         />
