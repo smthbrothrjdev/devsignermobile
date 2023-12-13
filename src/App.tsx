@@ -22,7 +22,7 @@ return (
       <Box sx={{ display: 'flex'}}>
         <Sidebar />
         <Box component="main" sx={{ flexGrow: 1,  textAlign: 'center', pl: 10}}  >
-          <h1>Application Team Manager</h1>
+          <h2>Application Team Manager</h2>
           <BadGrid />
           <Stack sx={{ p: 3 }} spacing={2} direction={"row"} justifyContent="flex-end">
             <Button variant="contained" color="secondary">PERSERVERE</Button>

@@ -12,6 +12,7 @@ const Sidebar = () => {
               width: drawerWidth,
               boxSizing: 'border-box',
               p: 1,
+
               backgroundColor: 'grey.200'
             },
           }}

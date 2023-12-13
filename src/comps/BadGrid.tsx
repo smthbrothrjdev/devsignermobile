@@ -86,6 +86,8 @@ export default function BadGrid() {
             pageSizeOptions={[50]}
             checkboxSelection
             disableRowSelectionOnClick
+            sx={{    boxShadow: 2,
+              border: 1,}}
         />
       </Box>
   );
